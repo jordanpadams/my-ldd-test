@@ -8,7 +8,7 @@ on:
    push:
      branches:
        - '*'
-       - '!master'
+       # - '!master'
      paths:
       - 'src/*.xml'
       - '.github/workflows/*.yml'
@@ -16,7 +16,6 @@ on:
 env:
   REGRESSION_TEST_PATH: ${{ format('{0}/{1}/', github.workspace, 'test') }}
   # TODO - Have to hard-code this for now since Actions don't yet allow the use of env here.
-  DEPLOY_PATH: ${{ format('{0}/{1}/{2}', github.workspace, 'build/development', github.sha) }}
   LOGS_PATH: ${{ format('{0}/{1}', github.workspace, 'logs') }}
 
 jobs:
@@ -27,7 +26,8 @@ jobs:
 
     strategy:
       matrix:
-        pds4_version: [ '1.14.0.0', '1.15.0.0' ]
+        # pds4_version: [ '1.14.0.0', '1.15.0.0' ]
+        pds4_version: [ '1.14.0.0' ]
         # Example of how to specify multiple versions
         # pds4_version: [ '1.13.0.0', '1.14.0.0' ]
 
@@ -39,12 +39,21 @@ jobs:
           # Example of include for development release of IM
           - pds4_version: '1.15.0.0'
             lddtool_development_release: True
-            pds4_development_release: True
 
     steps:
       - uses: actions/checkout@v2
         with:
           token: ${{ secrets.ADMIN_GITHUB_TOKEN }}
+
+      - name: Initialize workflow variables
+        id: vars
+        shell: bash
+        run: |
+          if [[ "${{github.ref}}" == *"release"* ]]; then
+            echo "::set-env name=DEPLOY_PATH::${{github.workspace}}/build/release"
+          else
+            echo "::set-env name=DEPLOY_PATH::${{github.workspace}}/build/development/${{github.sha}}"
+          fi
 
       - name: Set up Python 3
         uses: actions/setup-python@v1
