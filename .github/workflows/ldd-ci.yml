@@ -107,10 +107,16 @@ jobs:
       - name: Display structure of downloaded files
         run: ls -R /tmp/artifacts
 
-      - name: Clean out old LDDs
+      - name: Initialize workflow variables and cleanup
+        id: vars
+        shell: bash
         run: |
-          path=$(dirname ${{ env.DEPLOY_PATH }})
-          rm -fr $path/*
+          if [[ "${{github.ref}}" == *"release"* ]]; then
+            echo "::set-env name=DEPLOY_PATH::${{github.workspace}}/build/release"
+          else
+            echo "::set-env name=DEPLOY_PATH::${{github.workspace}}/build/development/${{github.sha}}"
+            rm -fr ${{github.workspace}}/build/development
+          fi
 
       - name: Move the LDDs to their new home
         run: |
