@@ -51,7 +51,6 @@ jobs:
         run: |
           if [[ "${{github.ref}}" == *"release"* ]]; then
             echo "DEPLOY_PATH=${{github.workspace}}/build/release" >> $GITHUB_ENV
-            echo "::set-env name=DEPLOY_PATH::"
           else
             echo "DEPLOY_PATH=${{github.workspace}}/build/development/${{github.sha}}"  >> $GITHUB_ENV
           fi
