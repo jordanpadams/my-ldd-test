@@ -114,7 +114,7 @@ jobs:
         shell: bash
         run: |
           if [[ "${{github.ref}}" == *"release"* ]]; then
-            echo ":DEPLOY_PATH=${{github.workspace}}/build/development/${{github.sha}}" >> $GITHUB_ENV
+            echo "DEPLOY_PATH=${{github.workspace}}/build/development/${{github.sha}}" >> $GITHUB_ENV
             rm -fr ${{github.workspace}}/build/development
           fi
 
