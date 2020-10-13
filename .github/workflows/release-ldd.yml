@@ -2,7 +2,7 @@
 # For more information see: https://github.com/actions/setup-java#apache-maven-with-a-settings-path
 ---
 
-name: LDD Automation with PDSEN CI Bot
+name: Release and Tag LDD Release
 
 on:
    push:
@@ -46,12 +46,9 @@ jobs:
            pip install pds-github-util
            ldd-release --ingest_ldd_src_dir ${{github.workspace}}/src --ldd_output_path ${{ env.DEPLOY_PATH }} --token ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Push changes
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.ADMIN_GITHUB_TOKEN }}
-          branch: ${{ env.GITHUB_REF }}
-      - name: Ping pdsen-corral
-        run: |
-          pip install pds-github-util
-          git-ping --repo nasa-pds/pdsen-corral --token ${{ secrets.ADMIN_GITHUB_TOKEN }} --branch master --message 'pds4-information-model has been upgrade to ${{ github.ref }}'
+      # - name: Push changes
+      #   uses: ad-m/github-push-action@master
+      #   with:
+      #     github_token: ${{ secrets.ADMIN_GITHUB_TOKEN }}
+      #     branch: ${{ env.GITHUB_REF }}
+
