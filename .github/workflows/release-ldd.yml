@@ -32,26 +32,26 @@ jobs:
         with:
           python-version: '3.7'
 
-    - name: Adding dependencies
-      run: |
-         sudo apt-get update && sudo apt-get install -y libxml2-dev libxslt1-dev python-libxml2
+      - name: Adding dependencies
+        run: |
+           sudo apt-get update && sudo apt-get install -y libxml2-dev libxslt1-dev python-libxml2
 
-    - name: Clean previous dev/snapshot tags
-      run: |
-        git fetch --prune --unshallow --tags
-        git tag -l | grep 'SNAPSHOT' | xargs -t -I arg sh -c 'git tag -d arg;git push --delete origin arg;'
+      - name: Clean previous dev/snapshot tags
+        run: |
+          git fetch --prune --unshallow --tags
+          git tag -l | grep 'SNAPSHOT' | xargs -t -I arg sh -c 'git tag -d arg;git push --delete origin arg;'
 
-    - name: Publish new release
-      run: |
-         pip install pds-github-util
-         ldd-release --ingest_ldd_src_dir $GITHUB_WORKSPACE/src --ldd_output_path ${{ env.DEPLOY_PATH }} --token ${{ secrets.GITHUB_TOKEN }}
+      - name: Publish new release
+        run: |
+           pip install pds-github-util
+           ldd-release --ingest_ldd_src_dir $GITHUB_WORKSPACE/src --ldd_output_path ${{ env.DEPLOY_PATH }} --token ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Push changes
-      uses: ad-m/github-push-action@master
-      with:
-        github_token: ${{ secrets.ADMIN_GITHUB_TOKEN }}
-        branch: ${{ env.GITHUB_REF }}
-    - name: Ping pdsen-corral
-      run: |
-        pip install pds-github-util
-        git-ping --repo nasa-pds/pdsen-corral --token ${{ secrets.ADMIN_GITHUB_TOKEN }} --branch master --message 'pds4-information-model has been upgrade to ${{ github.ref }}'
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.ADMIN_GITHUB_TOKEN }}
+          branch: ${{ env.GITHUB_REF }}
+      - name: Ping pdsen-corral
+        run: |
+          pip install pds-github-util
+          git-ping --repo nasa-pds/pdsen-corral --token ${{ secrets.ADMIN_GITHUB_TOKEN }} --branch master --message 'pds4-information-model has been upgrade to ${{ github.ref }}'
