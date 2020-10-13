@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-  <!-- PDS4 XML/Schema for Name Space Id:example  Version:1.0.0.0 - Thu Sep 17 01:38:05 UTC 2020 -->
+  <!-- PDS4 XML/Schema for Name Space Id:example  Version:1.0.0.0 - Fri Oct 09 21:05:48 UTC 2020 -->
   <!-- Generated from the PDS4 Information Model Version 1.15.0.0 - System Build 11a -->
   <!-- *** This PDS4 product schema is an operational deliverable. *** -->
   <!--                                                                           -->
   <!--               Dictionary Stack                                            -->
   <!-- 1.15.0.0 - pds: - Common Dictionary                                       -->
   <!-- 1.0.0.0 - example: - Example LDD                                          -->
-  <!--   file:/home/runner/work/ldd-template/ldd-template/src/PDS4_EXAMPLE_Inges -->
+  <!--   file:/home/runner/work/my-ldd-test/my-ldd-test/src/PDS4_EXAMPLE_IngestL -->
   <!--                                                                           -->
   <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
     targetNamespace="http://pds.nasa.gov/pds4/example/v1"
@@ -20,7 +20,7 @@
  
   <xs:annotation>
     <xs:documentation>
-This XML schema file has been generated from the Information Model.
+_TBD_Ingest_LDD
     </xs:documentation>
   </xs:annotation>
  
