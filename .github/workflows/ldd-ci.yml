@@ -8,7 +8,7 @@ on:
    push:
      branches:
        - '*'
-       # - '!master'
+       - '!master'
      paths:
       - 'src/*.xml'
       - '.github/workflows/*.yml'
@@ -90,8 +90,9 @@ jobs:
           path: ${{ env.LOGS_PATH }}
         if: ${{ always() }}
 
+
   upload: # job 2
-    name: 'Upload LDDs to Github'
+    name: 'Upload LDDs to Github Repo'
     runs-on: ubuntu-latest
     if: github.actor != 'pdsen-ci'
 
@@ -112,8 +113,6 @@ jobs:
         shell: bash
         run: |
           if [[ "${{github.ref}}" == *"release"* ]]; then
-            echo "::set-env name=DEPLOY_PATH::${{github.workspace}}/build/release"
-          else
             echo "::set-env name=DEPLOY_PATH::${{github.workspace}}/build/development/${{github.sha}}"
             rm -fr ${{github.workspace}}/build/development
           fi
@@ -121,7 +120,7 @@ jobs:
       - name: Move the LDDs to their new home
         run: |
           mkdir -p ${{ env.DEPLOY_PATH }}
-          mv /tmp/artifacts/*LDDs/* ${{ env.DEPLOY_PATH }}
+          cp -R /tmp/artifacts/*LDDs/* ${{ env.DEPLOY_PATH }}
 
       - name: Display structure of downloaded files
         run: ls -R ${{ env.DEPLOY_PATH }}
