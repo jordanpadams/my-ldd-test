@@ -39,12 +39,12 @@ jobs:
       - name: Clean previous dev/snapshot tags
         run: |
           git fetch --prune --unshallow --tags
-          git tag -l | grep 'SNAPSHOT' | xargs -t -I arg sh -c 'git tag -d arg;git push --delete origin arg;'
+          git tag -l | grep 'dev' | xargs -t -I arg sh -c 'git tag -d arg;git push --delete origin arg;'
 
       - name: Publish new release
         run: |
            pip install pds-github-util
-           ldd-release --ingest_ldd_src_dir $GITHUB_WORKSPACE/src --ldd_output_path ${{ env.DEPLOY_PATH }} --token ${{ secrets.GITHUB_TOKEN }}
+           ldd-release --ingest_ldd_src_dir ${{github.workspace}}/src --ldd_output_path ${{ env.DEPLOY_PATH }} --token ${{ secrets.GITHUB_TOKEN }}
 
       - name: Push changes
         uses: ad-m/github-push-action@master
