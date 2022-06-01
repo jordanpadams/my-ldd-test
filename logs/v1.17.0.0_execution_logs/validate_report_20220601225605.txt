@@ -3,13 +3,13 @@ PDS Validate Tool Report
 
 Configuration:
    Version                       2.2.0
-   Date                          2022-06-01T22:38:45Z
+   Date                          2022-06-01T22:56:11Z
 
 Parameters:
-   Targets                       [file:/home/runner/work/my-ldd-test/my-ldd-test/build/development/609bb08932baf8a61ee6941d7afb3905a0161e89/1.17.0.0/PDS4_EXAMPLE_1H00_1000.xml, file:/home/runner/work/my-ldd-test/my-ldd-test/test/valid/test1_VALID.xml, file:/home/runner/work/my-ldd-test/my-ldd-test/test/fail/test1_FAIL.xml]
+   Targets                       [file:/home/runner/work/my-ldd-test/my-ldd-test/build/development/6af19f3485bbd878ba25f6e6ce1725fab8a6e714/1.17.0.0/PDS4_EXAMPLE_1H00_1000.xml, file:/home/runner/work/my-ldd-test/my-ldd-test/test/valid/test1_VALID.xml, file:/home/runner/work/my-ldd-test/my-ldd-test/test/fail/test1_FAIL.xml]
    Rule Type                     pds4.label
-   User Specified Schemas        [file:/home/runner/work/my-ldd-test/my-ldd-test/build/development/609bb08932baf8a61ee6941d7afb3905a0161e89/1.17.0.0/PDS4_EXAMPLE_1H00_1000.xsd, file:/tmp/PDS4_PDS_1H00.xsd]
-   User Specified Schematrons    [file:/home/runner/work/my-ldd-test/my-ldd-test/build/development/609bb08932baf8a61ee6941d7afb3905a0161e89/1.17.0.0/PDS4_EXAMPLE_1H00_1000.sch, file:/tmp/PDS4_PDS_1H00.sch]
+   User Specified Schemas        [file:/home/runner/work/my-ldd-test/my-ldd-test/build/development/6af19f3485bbd878ba25f6e6ce1725fab8a6e714/1.17.0.0/PDS4_EXAMPLE_1H00_1000.xsd, file:/tmp/PDS4_PDS_1H00.xsd]
+   User Specified Schematrons    [file:/home/runner/work/my-ldd-test/my-ldd-test/build/development/6af19f3485bbd878ba25f6e6ce1725fab8a6e714/1.17.0.0/PDS4_EXAMPLE_1H00_1000.sch, file:/tmp/PDS4_PDS_1H00.sch]
    Severity Level                WARNING
    Recurse Directories           true
    File Filters Used             [*.xml, *.XML]
@@ -22,7 +22,7 @@ Parameters:
 
 Product Level Validation Results
 
-  PASS: file:/home/runner/work/my-ldd-test/my-ldd-test/build/development/609bb08932baf8a61ee6941d7afb3905a0161e89/1.17.0.0/PDS4_EXAMPLE_1H00_1000.xml
+  PASS: file:/home/runner/work/my-ldd-test/my-ldd-test/build/development/6af19f3485bbd878ba25f6e6ce1725fab8a6e714/1.17.0.0/PDS4_EXAMPLE_1H00_1000.xml
         1 product validation(s) completed
 
   PASS: file:/home/runner/work/my-ldd-test/my-ldd-test/test/valid/test1_VALID.xml
@@ -55,5 +55,5 @@ Summary:
     2            warning.label.missing_schematron_spec
 
 End of Report
-Completed execution in 6358 ms
+Completed execution in 4723 ms
 
